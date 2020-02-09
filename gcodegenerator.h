@@ -12,7 +12,8 @@ public:
     explicit GCodeGenerator(QObject *parent  = nullptr);
 
 public slots:
-    void generateStitches(int rows, int columns,float stitchHeight, float stitchWidth);
+    void generateStitches(float rows, float columns,float stitchHeight, float stitchWidth, float centerX, float centerY);
+    void clearFile();
 };
 
 #endif // GCODEGENERATOR_H
