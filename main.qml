@@ -22,7 +22,7 @@ Window {
         spacing: 10
         Layout.maximumHeight: 50
         Text {
-            text: "Big stitches (row; col; centerX; centerY)"
+            text: "Big stitches (col; row; centerX; centerY)"
             color: "gray"
             font.pointSize: 25
         }
@@ -109,20 +109,35 @@ Window {
 
                 text: "3"
 
-                validator: DoubleValidator{}
+                //validator: DoubleValidator{}
             }
         }
 
         Button {
             text: "Generate"
 
-            onClicked: generator.generateStitches(Number.fromLocaleString(Qt.locale("ru_RU"), input1.text),Number.fromLocaleString(Qt.locale("ru_RU"), input2.text),46,20,Number.fromLocaleString(Qt.locale("ru_RU"), input3.text),Number.fromLocaleString(Qt.locale("ru_RU"), input4.text))
+            onClicked: {
+                generator.generateStandardStitchesEngrave(
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input1.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input2.text),
+                            46,
+                            20,
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input3.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input4.text));
+                generator.generateStandardStitchesCut(
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input1.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input2.text),
+                            46,
+                            20,
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input3.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input4.text));
+
+            }
         }
     }
 
-
     RowLayout {
-        id: small
+        id: bigBySize
 
         anchors.left: parent.left
         width: parent.width
@@ -134,7 +149,143 @@ Window {
         spacing: 10
         Layout.maximumHeight: 50
         Text {
-            text: "Small stitches (row; col; centerX; centerY)"
+            text: "Big stitches (width; height; centerX; centerY)"
+            color: "gray"
+            font.pointSize: 25
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input13
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input14
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input15
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input16
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        Text{
+            font.pointSize: 20
+            text: "With translate"
+            color: "white"
+        }
+        Switch{
+            id: withTranslateBigSwitch
+        }
+
+        Button {
+            text: "Generate"
+
+            onClicked: {
+                if (withTranslateBigSwitch.checked){
+                    generator.generateStandardStitches(
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input13.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input14.text),
+                           false,
+                           true,
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input15.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input16.text));
+                }
+                if (!withTranslateBigSwitch.checked){
+                    generator.generateStandardStitches(
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input13.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input14.text),
+                           false);
+                }
+            }
+        }
+    }
+
+    RowLayout {
+        id: small
+
+        anchors.left: parent.left
+        width: parent.width
+        height: parent.height/10
+        anchors.top: bigBySize.bottom
+
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        spacing: 10
+        Layout.maximumHeight: 50
+        Text {
+            text: "Small stitches (col; row; centerX; centerY)"
             color: "gray"
             font.pointSize: 25
         }
@@ -200,7 +351,7 @@ Window {
 
                 text: "3"
 
-                validator: DoubleValidator{}
+                //validator: DoubleValidator{}
             }
         }
 
@@ -228,11 +379,162 @@ Window {
         Button {
             text: "Generate"
 
-            onClicked: generator.generateStitches(Number.fromLocaleString(Qt.locale("ru_RU"), input5.text),Number.fromLocaleString(Qt.locale("ru_RU"), input6.text),46,12.85,Number.fromLocaleString(Qt.locale("ru_RU"), input7.text),Number.fromLocaleString(Qt.locale("ru_RU"), input8.text))
+            onClicked: {
+                generator.generateStandardStitchesEngrave(
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input5.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input6.text),
+                            46,
+                            12.85,
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input7.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input8.text));
+                generator.generateStandardStitchesCut(
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input5.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input6.text),
+                            46,
+                            12.85,
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input7.text),
+                            Number.fromLocaleString(Qt.locale("ru_RU"), input8.text));
+            }
+        }
+    }
+    RowLayout {
+        id: smallBySize
+
+        anchors.left: parent.left
+        width: parent.width
+        height: parent.height/10
+        anchors.top: small.bottom
+
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        spacing: 10
+        Layout.maximumHeight: 50
+        Text {
+            text: "Small stitches (width; height; centerX; centerY)"
+            color: "gray"
+            font.pointSize: 25
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input9
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input10
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input11
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        FocusScope {
+            width: 96; height: 30
+            Rectangle {
+                anchors.fill: parent
+                color: "lightsteelblue"
+                border.color: "gray"
+
+            }
+
+            TextInput {
+                id: input12
+                anchors.fill: parent
+                focus: true
+                font.pointSize: 20
+
+                text: "3"
+
+                //validator: DoubleValidator{}
+            }
+        }
+
+        Text{
+            font.pointSize: 20
+            text: "With translate"
+            color: "white"
+        }
+
+        Switch{
+            id: withTranslateSmallSwitch
+        }
+
+        Button {
+            text: "Generate"
+
+            onClicked: {
+                if (withTranslateSmallSwitch.checked){
+                    generator.generateStandardStitches(
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input9.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input10.text),
+                           true,
+                           true,
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input11.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input12.text));
+                }
+                if (!withTranslateSmallSwitch.checked){
+                    generator.generateStandardStitches(
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input9.text),
+                           Number.fromLocaleString(Qt.locale("ru_RU"), input10.text),
+                           true);
+                }
+            }
         }
     }
     Button {
-        anchors.top:small.bottom
+        anchors.top:smallBySize.bottom
 
         text: "Clear file"
 
